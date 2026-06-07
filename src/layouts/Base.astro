@@ -13,6 +13,12 @@ const { title, description, bodyClass = '', socialImage = '' } = Astro.props;
 const siteName = 'Anton Vinogradov';
 const author = 'Anton Vinogradov';
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+
+// Base path with any trailing slash stripped ('/stillnot.ai' as a project site,
+// '' on the apex domain), so `${base}/path` yields a correct single-slash URL in
+// both cases. All public-asset and internal links go through this, so the deploy
+// target can change with a single astro.config edit.
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 ---
 
 <!doctype html>
@@ -30,11 +36,11 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta name="author" content={author} />
 
     {/* https://realfavicongenerator.net */}
-    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
-    <link rel="manifest" href="/assets/icons/site.webmanifest" />
-    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#5bbad5" />
+    <link rel="apple-touch-icon" sizes="180x180" href={`${base}/assets/icons/apple-touch-icon.png`} />
+    <link rel="icon" type="image/png" sizes="32x32" href={`${base}/assets/icons/favicon-32x32.png`} />
+    <link rel="icon" type="image/png" sizes="16x16" href={`${base}/assets/icons/favicon-16x16.png`} />
+    <link rel="manifest" href={`${base}/assets/icons/site.webmanifest`} />
+    <link rel="mask-icon" href={`${base}/assets/icons/safari-pinned-tab.svg`} color="#5bbad5" />
     <meta name="theme-color" content="#ffffff" />
 
     {/* social tags */}
