@@ -1,0 +1,66 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  bodyClass?: string;
+  socialImage?: string;
+}
+
+const { title, description, bodyClass = '', socialImage = '' } = Astro.props;
+
+const siteName = 'Anton Vinogradov';
+const author = 'Anton Vinogradov';
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="canonical" href={canonical} />
+
+    <meta charset="utf-8" />
+    <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="cleartype" content="on" />
+
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content={author} />
+
+    {/* https://realfavicongenerator.net */}
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/apple-touch-icon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/icons/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/icons/favicon-16x16.png" />
+    <link rel="manifest" href="/assets/icons/site.webmanifest" />
+    <link rel="mask-icon" href="/assets/icons/safari-pinned-tab.svg" color="#5bbad5" />
+    <meta name="theme-color" content="#ffffff" />
+
+    {/* social tags */}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={siteName} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:creator" content={author} />
+    {socialImage && <meta name="twitter:image" content={socialImage} />}
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={siteName} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={siteName} />
+    {socialImage && <meta property="og:image" content={socialImage} />}
+  </head>
+
+  <body class={bodyClass}>
+    <main
+      class="box-border w-screen max-w-[576px] pt-16 pr-0 pb-0 pl-16 max-[481px]:max-w-full max-[481px]:p-6"
+    >
+      <div class="avalogo flex h-6 w-6 items-center justify-center rounded-full bg-accent">
+        <div class="h-3 w-3 rounded-full bg-[#11200B]"></div>
+      </div>
+
+      <slot />
+    </main>
+  </body>
+</html>

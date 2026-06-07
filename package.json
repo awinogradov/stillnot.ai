@@ -1,0 +1,28 @@
+{
+  "name": "stillnot.ai",
+  "version": "1.0.0",
+  "description": "Anton Vinogradov — personal website",
+  "type": "module",
+  "author": "winogradovaa@gmail.com",
+  "license": "MIT",
+  "agents": {
+    "rules": "Bun"
+  },
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "check": "astro check"
+  },
+  "dependencies": {
+    "@tailwindcss/vite": "^4.3.0",
+    "astro": "^6.4.4",
+    "tailwindcss": "^4.3.0"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.9",
+    "lightningcss": "^1.32.0",
+    "typescript": "^6.0.3"
+  }
+}
